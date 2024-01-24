@@ -32,9 +32,15 @@ int main() {
     char escolha;
     printf("Escolha um numero de 0 a 99999\n");
     scanf("%d", &num);
-    printf("ESCOLHA UMA DAS OPÇÕES\nU - Unidade\nD - Dezena\nC - Centena\nM - Unidade de Milhar\nZ - Dezena de Milhar\n");
     
-    scanf("%c", &escolha);
+    if(num < 0 || num > 99999)
+    {
+        printf("Numero invalido.");;
+    }
+    else
+    {
+        printf("ESCOLHA UMA DAS OPÇÕES\nU - Unidade\nD - Dezena\nC - Centena\nM - Unidade de Milhar\nZ - Dezena de Milhar\n");
+        scanf(" %c", &escolha);
     
         switch(escolha)
         {
@@ -56,7 +62,7 @@ int main() {
             default:
                 printf("ESCOLHA INVALIDA");
                 break;
-        
+        }
     }
     
     
