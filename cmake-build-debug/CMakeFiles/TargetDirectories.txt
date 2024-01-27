@@ -1,0 +1,3 @@
+C:/Users/Thiago/source/repos/programacao-imperativa/cmake-build-debug/CMakeFiles/programacao_imperativa.dir
+C:/Users/Thiago/source/repos/programacao-imperativa/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Thiago/source/repos/programacao-imperativa/cmake-build-debug/CMakeFiles/rebuild_cache.dir

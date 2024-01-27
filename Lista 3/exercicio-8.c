@@ -4,17 +4,17 @@
 
 int unidade(int num)
 {
-    return num % 10000 % 1000 % 100 % 10;
+    return num % 10;
 }
 
 int dezena(int num)
 {
-    return num % 10000 % 1000 % 100 / 10;
+    return num % 100 / 10;
 }
 
 int centena(int num)
 {
-    return num % 10000 % 1000 / 100;
+    return num % 1000 / 100;
 }
 
 int milhar(int num)
@@ -41,7 +41,7 @@ int main() {
     {
         printf("ESCOLHA UMA DAS OPÇÕES\nU - Unidade\nD - Dezena\nC - Centena\nM - Unidade de Milhar\nZ - Dezena de Milhar\n");
         scanf(" %c", &escolha);
-    
+
         switch(escolha)
         {
             case 'U':
@@ -64,6 +64,12 @@ int main() {
                 break;
         }
     }
-    
+
+//    printf("dezena de milhar: %d\n milhar: %d\n centena: %d\n dezena: %d\n unidade %d\n",
+//           dezenaMilhar(num),
+//           milhar(num),
+//           centena(num),
+//           dezena(num),
+//           unidade(num));
     
 }
