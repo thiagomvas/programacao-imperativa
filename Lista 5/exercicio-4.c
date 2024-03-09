@@ -5,7 +5,7 @@
 int main() {
     int numAlunos = 50;
     float media = 7;
-    int minimo = 5;
+    int minimoAcimaDaMedia = 5;
     
     for(int i = 1; i <= numAlunos; i++)
     {
@@ -16,11 +16,16 @@ int main() {
             float nota;
             printf("Nota da #%d avaliação: ", j);
             scanf("%f", &nota);
+            while(nota < 0)
+            {
+                printf("NOTA INVALIDA! Insira uma nota maior que 0 para a #%d avaliação: ", j);
+                scanf("%f", &nota);
+            }
             if(nota >= media)
                 acimaDaMedia++;
         }
-        printf("Total de notas acima de %d: %d\n", media, acimaDaMedia);
-        if(acimaDaMedia >= minimo)
+        printf("Total de notas acima de %.2f: %d\n", media, acimaDaMedia);
+        if(acimaDaMedia >= minimoAcimaDaMedia)
             printf("APROVADO");
         else
             printf("REPROVADO");
