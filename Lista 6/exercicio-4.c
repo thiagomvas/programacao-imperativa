@@ -10,6 +10,8 @@ void exibirNomeSobrenome(char nomeCompleto[MAX_NOME_COMPLETO]) {
 
     sscanf(nomeCompleto, "%s %[^\n]", nome, sobrenome);
 
+    nome[0] = toupper(nome[0]);
+    
     for (int i = 0; sobrenome[i] != '\0'; i++) {
         sobrenome[i] = toupper(sobrenome[i]);
     }
@@ -39,4 +41,3 @@ int main() {
 
     return 0;
 }
-
