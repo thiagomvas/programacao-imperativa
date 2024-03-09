@@ -2,15 +2,18 @@
 #include <stdio.h>
 #include <math.h>
 
-float parcela(float valor, int meses)
-{
-    return (valor + meses * 100) / meses;
-}
+#define JUROS 110
 
 float total(float valor, int meses)
 {
-    return valor + meses * 100;
+    return valor + meses * JUROS;
 }
+
+float parcela(float valor, int meses)
+{
+    return total(valor, meses) / meses;
+}
+
 
 int main() {
     float compra;
@@ -19,6 +22,6 @@ int main() {
     
     for(int i = 1; i <= 10; i++)
     {
-        printf("Pagamento em %d meses - Juros: R$100 - Total: %.2f - Parcela %d vezes R$ %.2f\n", i, total(compra, i), parcela(compra, i));
+        printf("Pagamento em %d meses - Juros: R$ %d - Total: %.2f - Parcela %d vezes R$ %.2f\n", i, JUROS, total(compra, i), i, parcela(compra, i));
     }
 }
