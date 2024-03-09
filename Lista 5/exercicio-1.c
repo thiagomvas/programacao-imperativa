@@ -13,6 +13,12 @@ int main() {
     printf("Qual o peso que quer chegar em kg?\n");
     scanf("%f", &pesoMeta);
     
+    if(pesoAtual <= 0 || pesoMeta <= 0)
+    {
+        printf("O seu peso atual e sua meta devem ser acima de 0!");
+        return 0;
+    }
+    
     if(pesoAtual < pesoMeta)
     {
         printf("Você ja esta abaixo do peso desejado!");
