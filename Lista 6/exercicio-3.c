@@ -5,24 +5,22 @@
 #define MAX_PALAVRA 20
 
 int contarVogais(char palavra[MAX_PALAVRA]) {
-    int vogais = 0;
+    int totalvogais = 0;
+
+    char vogais[] = {'a', 'e', 'i', 'o', 'u', 'á', 'é', 'í', 'ó', 'ú', 'â', 'ê', 'î', 'ô', 'û', 'ã', 'õ', 'Â', 'Ê', 'Î', 'Ô', 'Û', 'Ã', 'Õ', 'Á', 'É', 'Í', 'Ó', 'Ú'};
 
     for (int i = 0; palavra[i] != '\0'; i++) {
         char caractere = tolower(palavra[i]);
-
-        switch(caractere)
-        {
-            case 'a':
-            case 'e':
-            case 'i':
-            case 'o':
-            case 'u':
-                vogais++;
+    
+        for (int j = 0; j < sizeof(vogais) / sizeof(vogais[0]); j++) {
+            if (caractere == vogais[j]) {
+                totalvogais++;
                 break;
+            }
         }
     }
 
-    return vogais;
+    return totalvogais;
 }
 
 int main() {
@@ -44,4 +42,3 @@ int main() {
 
     return 0;
 }
-
