@@ -1,10 +1,22 @@
 #include <stdio.h>
 
-#define TOTAL_ALUNOS 100
+#define TOTAL_ALUNOS 5
 #define ANO_GERONTOLOGIA 99
 
-int contarAlunosGerontologiaNoAno(int matriculas[TOTAL_ALUNOS], int ano, int curso);
+int contarAlunosGerontologiaNoAno(int matriculas[TOTAL_ALUNOS], int ano, int curso) {
+    int contador = 0;
 
+    for (int i = 0; i < TOTAL_ALUNOS; i++) {
+        int anoMatricula = matriculas[i] / 1000000; //  Obter ano
+        int cursoMatricula = (matriculas[i] / 10000) % 100; // Obter curso
+
+        if (anoMatricula == ano && cursoMatricula == curso) {
+            contador++;
+        }
+    }
+
+    return contador;
+}
 int main() {
     int matriculas[TOTAL_ALUNOS];
     int ano, quantidadeAlunos;
@@ -22,19 +34,4 @@ int main() {
     printf("Quantidade de alunos de Gerontologia no ano %d: %d\n", ano, quantidadeAlunos);
 
     return 0;
-}
-
-int contarAlunosGerontologiaNoAno(int matriculas[TOTAL_ALUNOS], int ano, int curso) {
-    int contador = 0;
-
-    for (int i = 0; i < TOTAL_ALUNOS; i++) {
-        int anoMatricula = matriculas[i] / 1000000; //  Obter ano
-        int cursoMatricula = (matriculas[i] / 10000) % 100; // Obter curso
-
-        if (anoMatricula == ano && cursoMatricula == curso) {
-            contador++;
-        }
-    }
-
-    return contador;
 }
