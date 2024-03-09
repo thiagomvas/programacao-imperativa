@@ -3,10 +3,11 @@
 #include <math.h>
 #include <limits.h>
 
+#define TARIFA 22
+
 float montante(int passagens)
 {
-    float tarifa = 22;
-    return passagens * tarifa;
+    return passagens * TARIFA;
 }
 
 float mediaPassagens(int passagens, int cargaHoraria)
