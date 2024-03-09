@@ -1,10 +1,11 @@
 // Online C compiler to run C program online
 #include <stdio.h>
 #include <math.h>
-#include <limits.h>
 
 int fatorial(int n)
 {
+    if(n <= 0)
+        return 1;
         
     int total = 1;
     for(int i = 1; i <= n; i++)
@@ -19,5 +20,5 @@ int main() {
     printf("Escolha um N: ");
     scanf("%d", &n);
     for(int i = 1; i <= n; i++)
-    printf("%d! = %d\n",i, fatorial(i));
+        printf("%d! = %d\n",i, fatorial(i));
 }
