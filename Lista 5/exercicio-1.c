@@ -24,5 +24,8 @@ int main() {
         return 0;
     }
     
-    printf("Será atingido o peso desejado em %d meses", numMeses(pesoAtual, pesoMeta));
+    int meses = numMeses(pesoAtual, pesoMeta);
+    printf("Atingirá sua meta em %d meses: \n", meses);
+    for(int i = 1; i <= meses; i++)
+        printf("Mes %d - Peso: %.2f\n", i, pesoAtual - 5 * i);
 }
