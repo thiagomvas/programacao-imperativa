@@ -1,14 +1,8 @@
 # ninja log v5
-1	1178	7267768984914022	CMakeFiles/programacao_imperativa.dir/Lista_1/exercicio-1.c.obj	ce94804980e03fe1
-13	1846	7267768991590792	CMakeFiles/programacao_imperativa.dir/Lista_1/exercicio-5.c.obj	c4264a4560e6ae16
-1186	1994	7267768993064651	CMakeFiles/programacao_imperativa.dir/Lista_1/exercicio-4.c.obj	4fa288dcb0ee8014
-1847	2167	7267768994747979	CMakeFiles/programacao_imperativa.dir/Lista_1/exercicio-3.c.obj	fe6a264c4de00cca
-1994	2462	7267768997755255	CMakeFiles/programacao_imperativa.dir/Lista_1/exercicio-7.c.obj	906f8cb0f6f261e2
-6	2143	7267768994478704	CMakeFiles/programacao_imperativa.dir/Lista_1/exercicio-2.c.obj	d71c6c8a6743d80f
-2168	2532	7267768997845022	CMakeFiles/programacao_imperativa.dir/Lista_1/exercicio-8.c.obj	51f0c9a5ad2d979f
-4	356	7280590227181665	CMakeFiles/programacao_imperativa.dir/Lista_2/exercicio-1.c.obj	72018f2acd4b4864
-2143	3048	7267769003610111	CMakeFiles/programacao_imperativa.dir/Lista_1/exercicio-6.c.obj	216c706c0af09427
-1	237	7280591755360116	build.ninja	a5ca857e57d43cfe
+1	183	7323104827942627	CMakeFiles/programacao_imperativa.dir/Lista_2/exercicio-1.c.obj	6932d75edeadc33
+9	167	7323104827613450	CMakeFiles/programacao_imperativa.dir/Lista_3/exercicio-1.c.obj	a21bf25ebb9a3f98
+1	237	7323106361410821	build.ninja	a5ca857e57d43cfe
 141	460	7267806120969597	programacao_imperativa.exe	4b80da51f239e5b6
-3	95	7280590470494925	CMakeFiles/programacao_imperativa.dir/Lista_4/exercicio-1.c.obj	dc975113a4310194
-9	355	7280590227171681	CMakeFiles/programacao_imperativa.dir/Lista_3/exercicio-1.c.obj	1cd85b8ecd7a7fef
+4	233	7323106361410821	build.ninja	e3496b1e794dc9af
+1	212	7323106364787078	CMakeFiles/programacao_imperativa.dir/Lista_7/exercicio-4.c.obj	acdacbd55c2afb9
+213	346	7323106366148076	programacao_imperativa.exe	8e0f6d9ef6456a63

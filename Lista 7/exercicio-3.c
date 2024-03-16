@@ -8,29 +8,26 @@ carros no estacionamento, exibir alerta ao utilizador.*/
 #include <string.h>
 #include <ctype.h>
 
-// Variáveis globais
 char Estaciona[30][14]; 
 float Valor; 
 char Responsavel[21], Iniciou = 0; 
 int QuantidadePorHora[15] = {0}; 
 
 void AbrirCaixa() {
-    system("cls");
+    system("cls"); 
     system("color 80"); 
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>>  Largas Vagas  <<< \n");
     printf("\n     ABRINDO  CAIXA \n");
     for (int i = 0; i < 30; i++)
         strcpy(Estaciona[i], "LIVRE");
-
     printf("\nQual o valor do estacionamento por hora de uso? ");
     scanf("%f", &Valor);
     fflush(stdin); // Limpa o buffer do teclado
     printf("Qual o nome do responsavel? ");
     scanf("%20s", Responsavel);
-    Iniciou = 1; // Define a flag de caixa aberto como verdadeira
+    Iniciou = 1; 
 }
-
 
 void ClienteChega() {
     int Vaga;
@@ -41,7 +38,6 @@ void ClienteChega() {
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>>  Largas Vagas  <<< \n");
     printf("\n   CHEGADA DE CLIENTE \n");
-
     if (Iniciou) {
         printf("\n CAIXA ABERTO   Valor/h: %.2f", Valor);
         printf("\n Responsavel: %s\n\n", Responsavel);
@@ -49,7 +45,6 @@ void ClienteChega() {
         scanf("%d", &Vaga);
         fflush(stdin); // Limpa o buffer do teclado
 
-        // Verifica se a vaga está livre
         if (strcmp(Estaciona[Vaga - 1], "LIVRE") == 0) {
             printf("Qual a placa do veiculo [7 digitos]? ");
             scanf("%s", Placa);
@@ -60,7 +55,6 @@ void ClienteChega() {
             // Extrai a hora e o minuto da entrada
             sscanf(Hora, "%d:%d", &hora, &minuto);
 
-            // Verifica se a entrada está dentro do horário de funcionamento
             if (hora >= 6 && hora < 20) {
                 strcpy(Entrada, Placa);
                 strcat(Entrada, "+");
@@ -81,6 +75,7 @@ void ClienteChega() {
         printf("\nERRO: Antes eh preciso abrir o caixa!\n");
     }
     system("pause"); 
+}
 
 void ClienteSai() {
     int Vaga;
@@ -93,16 +88,18 @@ void ClienteSai() {
     printf(" >>>  Largas Vagas  <<< \n");
     printf("\n    SAIDA DE CLIENTE \n");
 
-    // Verifica se o caixa está aberto
     if (Iniciou) {
         printf("\n CAIXA ABERTO   Valor/h: %.2f", Valor);
         printf("\n Responsavel: %s\n\n", Responsavel);
         printf("Qual a vaga ocupada? ");
         scanf("%d", &Vaga);
 
+        // Verifica se a vaga está ocupada
         if (strcmp(Estaciona[Vaga - 1], "LIVRE") != 0) {
+            // Obtém os dados de entrada do cliente na vaga especificada
             strcpy(Entrada, Estaciona[Vaga - 1]);
 
+            // Extrai a hora e o minuto da entrada
             sscanf(Entrada + 8, "%d:%d", &horaEntrada, &minutoEntrada);
 
             printf("\nHorario de entrada: %d:%d\n", horaEntrada, minutoEntrada);
@@ -118,11 +115,10 @@ void ClienteSai() {
 
                 TotalPagar = Valor * horasCompletas;
                 if (minutosExtras > 0) {
-                    TotalPagar += Valor; 
+                    TotalPagar += Valor; // Adiciona uma hora extra se houver minutos extras
                 }
 
                 printf("\nTotal a pagar: %.2f\n", TotalPagar);
-
                 printf("Qual o valor pago? ");
                 scanf("%f", &Pago);
                 Troco = Pago - TotalPagar;
@@ -138,7 +134,7 @@ void ClienteSai() {
     } else {
         printf("\nERRO: Antes eh preciso abrir o caixa!\n");
     }
-    system("pause"); 
+    system("pause");
 }
 
 void FecharCaixa() {
@@ -180,7 +176,6 @@ int main() {
         printf("\n 3 - Saida de Cliente");
         printf("\n 4 - Fechar Caixa");
         printf("\n\n Qual a opcao desejada? ");
-
         do {
             scanf("%d", &Op);
             if ((Op < 1) || (Op > 4)) {
