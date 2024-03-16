@@ -94,7 +94,7 @@ void AlterarValor(float Matriz[][6], int Freezer, int Caract)
     printf("Digite o novo valor: ");
     scanf("%f", &NovoValor);
     
-    Matriz[Freezer][Caract] = NovoValor;
+    Matriz[Caract][Freezer] = NovoValor;
 }
 
 void MelhorCapacidade(float Matriz[][6], int L, int C) {
