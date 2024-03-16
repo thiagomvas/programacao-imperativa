@@ -6,16 +6,14 @@ array auxiliar citado na questão anterior.*/
 #include <string.h>
 #include <ctype.h>
 
-// Definição das variáveis globais
-char Estaciona[30][14]; // Array para armazenar informações sobre as vagas de estacionamento
-float Valor; // Valor do estacionamento por hora
-char Responsavel[21], Iniciou = 0; // Responsável pelo caixa e indicador se o caixa foi aberto
-int QuantidadePorHora[15] = {0}; // Array auxiliar para armazenar a quantidade de carros por hora
+char Estaciona[30][14]; 
+float Valor; 
+char Responsavel[21], Iniciou = 0; 
+int QuantidadePorHora[15] = {0}; 
 
-// Função para abrir o caixa do estacionamento
 void AbrirCaixa() {
-    system("cls"); // Limpa a tela do console (apenas para Windows, para Linux use "clear")
-    system("color 80"); // Define a cor do texto e do fundo do console (apenas para Windows)
+    system("cls"); 
+    system("color 80"); 
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>>  Largas Vagas  <<< \n");
     printf("\n     ABRINDO  CAIXA \n");
@@ -24,38 +22,31 @@ void AbrirCaixa() {
     for (int i = 0; i < 30; i++)
         strcpy(Estaciona[i], "LIVRE");
 
-    // Solicita ao usuário o valor do estacionamento por hora e o nome do responsável
     printf("\nQual o valor do estacionamento por hora de uso? ");
     scanf("%f", &Valor);
     fflush(stdin);
     printf("Qual o nome do responsavel? ");
     scanf("%20s", Responsavel);
 
-    // Indica que o caixa foi aberto
     Iniciou = 1;
 }
 
-// Função para registrar a chegada de um cliente ao estacionamento
-// Função para registrar a chegada de um cliente ao estacionamento
 void ClienteChega() {
     int Vaga;
     char Placa[8], Hora[6], Entrada[14];
-    int hora, minuto; // Variáveis para armazenar a hora e o minuto
-    system("cls"); // Limpa a tela do console (apenas para Windows, para Linux use "clear")
-    system("color 80"); // Define a cor do texto e do fundo do console (apenas para Windows)
+    int hora, minuto; 
+    system("cls"); 
+    system("color 80"); 
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>>  Largas Vagas  <<< \n");
     printf("\n   CHEGADA DE CLIENTE \n");
-    // Verifica se o caixa está aberto
     if (Iniciou) {
         printf("\n CAIXA ABERTO   Valor/h: %.2f", Valor);
         printf("\n Responsavel: %s\n\n", Responsavel);
-        // Solicita ao usuário o número da vaga, a placa do veículo e a hora de entrada
         printf("Qual a vaga ocupada? ");
         scanf("%d", &Vaga);
         fflush(stdin); // Limpa o buffer do teclado
 
-        // Verifica se a vaga está livre
         if (strcmp(Estaciona[Vaga - 1], "LIVRE") == 0) {
             printf("Qual a placa do veiculo [7 digitos]? ");
             scanf("%s", Placa);
@@ -66,15 +57,12 @@ void ClienteChega() {
             // Extrai a hora e o minuto da entrada
             sscanf(Hora, "%d:%d", &hora, &minuto);
 
-            // Verifica se a entrada está dentro do horário de funcionamento
             if (hora >= 6 && hora < 20) {
-                // Atualiza o registro de entrada
                 strcpy(Entrada, Placa);
                 strcat(Entrada, "+");
                 strcat(Entrada, Hora);
                 strcpy(Estaciona[Vaga - 1], Entrada);
 
-                // Atualiza o quantitativo de carros para a hora de entrada
                 QuantidadePorHora[hora - 6]++;
 
                 printf("Chegada registrada com sucesso!\n");
@@ -87,23 +75,20 @@ void ClienteChega() {
     } else {
         printf("\nERRO: Antes eh preciso abrir o caixa!\n");
     }
-    system("pause"); // Pausa a execução até que o usuário pressione uma tecla (apenas para Windows)
+    system("pause"); 
 }
 
-// Função para registrar a saída de um cliente do estacionamento
-// Função para registrar a saída de um cliente do estacionamento
 void ClienteSai() {
     int Vaga;
     char Entrada[14], Hora[6];
     int horaEntrada, minutoEntrada, horaSaida, minutoSaida; // Variáveis para armazenar a hora e o minuto
     float TotalPagar, Pago, Troco;
-    system("cls"); // Limpa a tela do console (apenas para Windows, para Linux use "clear")
-    system("color 80"); // Define a cor do texto e do fundo do console (apenas para Windows)
+    system("cls"); 
+    system("color 80"); 
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>>  Largas Vagas  <<< \n");
     printf("\n    SAIDA DE CLIENTE \n");
 
-    // Verifica se o caixa está aberto
     if (Iniciou) {
         printf("\n CAIXA ABERTO   Valor/h: %.2f", Valor);
         printf("\n Responsavel: %s\n\n", Responsavel);
@@ -112,28 +97,21 @@ void ClienteSai() {
 
         // Verifica se a vaga está ocupada
         if (strcmp(Estaciona[Vaga - 1], "LIVRE") != 0) {
-            // Obtém os dados de entrada do cliente na vaga especificada
             strcpy(Entrada, Estaciona[Vaga - 1]);
 
-            // Extrai a hora e o minuto da entrada
             sscanf(Entrada + 8, "%d:%d", &horaEntrada, &minutoEntrada);
 
             printf("\nHorario de entrada: %d:%d\n", horaEntrada, minutoEntrada);
 
-            // Solicita ao usuário o horário de saída
             printf("Qual o horario de saida [formato hh:mm]? ");
             scanf("%d:%d", &horaSaida, &minutoSaida);
 
-            // Verifica se o horário de saída está dentro do horário de funcionamento
             if (horaSaida >= 6 && horaSaida < 20) {
-                // Calcula o tempo em minutos que o cliente permaneceu no estacionamento
                 int tempoEstacionado = (horaSaida - horaEntrada) * 60 + (minutoSaida - minutoEntrada);
 
-                // Calcula o número de horas completas e os minutos extras
                 int horasCompletas = tempoEstacionado / 60;
                 int minutosExtras = tempoEstacionado % 60;
 
-                // Calcula o valor total a pagar, considerando horas completas e minutos extras
                 TotalPagar = Valor * horasCompletas;
                 if (minutosExtras > 0) {
                     TotalPagar += Valor; // Adiciona uma hora extra se houver minutos extras
@@ -141,7 +119,6 @@ void ClienteSai() {
 
                 printf("\nTotal a pagar: %.2f\n", TotalPagar);
 
-                // Solicita ao cliente o valor pago e calcula o troco
                 printf("Qual o valor pago? ");
                 scanf("%f", &Pago);
                 Troco = Pago - TotalPagar;
@@ -158,11 +135,10 @@ void ClienteSai() {
     } else {
         printf("\nERRO: Antes eh preciso abrir o caixa!\n");
     }
-    system("pause"); // Pausa a execução até que o usuário pressione uma tecla (apenas para Windows)
+    system("pause"); 
 }
 
 
-// Função para fechar o caixa do estacionamento e gerar um relatório
 void FecharCaixa() {
     int carrosNoEstacionamento = 0;
     for (int i = 0; i < 30; i++) {
@@ -190,12 +166,11 @@ void FecharCaixa() {
     }
 }
 
-// Função principal
 int main() {
     int Op;
     do {
-        system("cls"); // Limpa a tela do console (apenas para Windows, para Linux use "clear")
-        system("color 70"); // Define a cor do texto e do fundo do console (apenas para Windows)
+        system("cls"); 
+        system("color 70"); 
         printf("\n >>> Estacionamento <<< \n");
         printf(" >>>  Largas Vagas  <<< \n");
         printf("\n 1 - Abrir Caixa");
