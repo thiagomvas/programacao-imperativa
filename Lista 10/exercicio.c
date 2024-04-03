@@ -15,7 +15,32 @@ TpRegMoto VZonda[50];
 
 int Quant=-1;//Controla o preenchimento do vetor
 
+// MELHORIA: Ao inves de um numero, exiba um texto falando o status
+void imprimeStatus(char status)
+{
+    printf("\n Status: ");
+    status = toupper(status);
+    switch(status)
+    {
+        case '0':
+            printf("Não iniciado");
+            break;
+        case '1':
+            printf("Iniciado");
+            break;
+        case '2':
+            printf("Cancelado");
+            break;
+        case '3':
+            printf("Finalizado");
+            break;
+        default:
+            printf("Status invalido");
+            break;
+    }
+}
 
+// MELHORIA: Checar se a placa ja está em uso.
 int PlacaEmUso(char placa[]) {
     for (int i = 0; i < Quant; i++) {
         if (strcmp(VZonda[i].Placa, placa) == 0) {
@@ -67,16 +92,35 @@ void IniciaServico(){
     printf("\n Cliente %d: %s", Pos+1, VZonda[Pos].Nome);
     printf("\n Modelo: %s", VZonda[Pos].Modelo);
     printf("\n Placa: %s", VZonda[Pos].Placa);
-    printf("\n Defeito: %s", VZonda[Pos].Defeito);
+    printf("\n Defeito(s): %s", VZonda[Pos].Defeito); // Mudar "defeito" para "defeito(s)"
     VZonda[Pos].Status='1';
-    printf("\n Status: %c",VZonda[Pos].Status);
+      imprimeStatus(VZonda[Pos].Status);
     if (VZonda[Pos].Preco==0)
       printf("\n Preco: NAO DEFINIDO");       
     else
       printf("\n Preco: %.2f",VZonda[Pos].Preco);}
 }
 
-void RemoverSolicitacao(){
+void RemoverSolicitacao() {
+    char Placa[8]; 
+    printf("Placa da moto para remover solicitação: ");
+    scanf(" %[^\n]s", Placa);
+    if (PlacaEmUso(Placa)) { 
+        for (int i = 0; i < Quant; i++) {
+            if (strcmp(VZonda[i].Placa, Placa) == 0) {
+                if (VZonda[i].Status == '0') {
+                    VZonda[i].Status = '2'; // Define o status como '2' (serviço removido)
+                    printf("Solicitação removida com sucesso para a moto de placa %s.\n", VZonda[i].Placa);
+                    return;
+                } else {
+                    printf("Não é possível remover a solicitação. O serviço já foi iniciado.\n");
+                    return;
+                }
+            }
+        }
+    } else {
+        printf("Placa não cadastrada ou inválida!\n");
+    }
 }
 
 void ConsultarSolicitacoes(){
@@ -89,7 +133,7 @@ void ConsultarSolicitacoes(){
       printf("\n Modelo: %s", VZonda[Cont].Modelo);
       printf("\n Placa: %s", VZonda[Cont].Placa);
       printf("\n Defeito: %s", VZonda[Cont].Defeito);
-      printf("\n Status: %c",VZonda[Cont].Status);
+      imprimeStatus(VZonda[Cont].Status);
     if (VZonda[Cont].Preco==0)
       printf("\n Preco: NAO DEFINIDO");       
     else
