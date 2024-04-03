@@ -15,7 +15,22 @@ TpRegMoto VZonda[50];
 
 int Quant=-1;//Controla o preenchimento do vetor
 
-// MELHORIA: Ao inves de um numero, exiba um texto falando o status
+// MELHORIA: Modularizar a impressão dos dados da moto
+
+void imprimeMoto(int index)
+{
+      printf("\n Cliente %d: %s", index+1, VZonda[index].Nome);
+      printf("\n Modelo: %s", VZonda[index].Modelo);
+      printf("\n Placa: %s", VZonda[index].Placa);
+      printf("\n Defeito: %s", VZonda[index].Defeito);
+      imprimeStatus(VZonda[index].Status);
+    if (VZonda[index].Preco==0)
+      printf("\n Preco: NAO DEFINIDO");       
+    else
+      printf("\n Preco: %.2f",VZonda[index].Preco);
+    printf("\n --------------------- \n\n");
+}
+
 void imprimeStatus(char status)
 {
     printf("\n Status: ");
@@ -129,21 +144,49 @@ void ConsultarSolicitacoes(){
     printf("Não há serviços cadastrados.");
   else{
     for (int Cont=0; Cont<=Quant; Cont++){
-      printf("\n Cliente %d: %s", Cont+1, VZonda[Cont].Nome);
-      printf("\n Modelo: %s", VZonda[Cont].Modelo);
-      printf("\n Placa: %s", VZonda[Cont].Placa);
-      printf("\n Defeito: %s", VZonda[Cont].Defeito);
-      imprimeStatus(VZonda[Cont].Status);
-    if (VZonda[Cont].Preco==0)
-      printf("\n Preco: NAO DEFINIDO");       
-    else
-      printf("\n Preco: %.2f",VZonda[Cont].Preco);
-    printf("\n --------------------- \n\n");}}} 
+        imprimeMoto(Cont);
+    }}} 
   
-void ConcluirServico(){
+void ConcluirServico() {
+    char Placa[8]; // Corrigido para 8 para acomodar os 7 caracteres da placa e o caractere nulo '\0'
+    printf("Placa da moto para concluir serviço: ");
+    scanf(" %[^\n]s", Placa);
+    if (PlacaEmUso(Placa)) { // Verifica se a placa é válida
+        for (int i = 0; i < Quant; i++) {
+            if (strcmp(VZonda[i].Placa, Placa) == 0) {
+                if (VZonda[i].Status == '1') {
+                    printf("Digite o preço final do serviço: ");
+                    scanf("%f", &VZonda[i].Preco);
+                    VZonda[i].Status = '3'; // Define o status como '3' (serviço concluído)
+                    printf("Serviço concluído com sucesso para a moto de placa %s.\n", VZonda[i].Placa);
+                    return;
+                } else {
+                    printf("Não é possível concluir o serviço. O serviço não foi iniciado.\n");
+                    return;
+                }
+            }
+        }
+    } else {
+        printf("Placa não cadastrada ou inválida!\n");
+    }
 }
 
-void EncerrarExpediente(){
+void EncerrarExpediente() {
+    printf("\n\n >>> Serviços Efetuados <<< \n\n");
+    float total = 0;
+    int efetuados = 0;
+    for (int i = 0; i < Quant; i++) {
+        if (VZonda[i].Status == '3') {
+            imprimeMoto(i);
+            total += VZonda[i].Preco;
+            efetuados++;
+        }
+    }
+    if (efetuados == 0) {
+        printf("Não há serviços concluídos.\n");
+    } else {
+        printf("Valor Total Obtido: %.2f\n", total);
+    }
 }
 
 int main(){
