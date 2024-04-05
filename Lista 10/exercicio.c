@@ -104,16 +104,9 @@ void IniciaServico(){
   if (Pos==-1)
     printf("Moto não cadastrada!");
   else{
-    printf("\n Cliente %d: %s", Pos+1, VZonda[Pos].Nome);
-    printf("\n Modelo: %s", VZonda[Pos].Modelo);
-    printf("\n Placa: %s", VZonda[Pos].Placa);
-    printf("\n Defeito(s): %s", VZonda[Pos].Defeito); // Mudar "defeito" para "defeito(s)"
-    VZonda[Pos].Status='1';
-      imprimeStatus(VZonda[Pos].Status);
-    if (VZonda[Pos].Preco==0)
-      printf("\n Preco: NAO DEFINIDO");       
-    else
-      printf("\n Preco: %.2f",VZonda[Pos].Preco);}
+        VZonda[Pos].Status='1';
+        imprimeMoto(Pos);
+  }
 }
 
 void RemoverSolicitacao() {
