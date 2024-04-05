@@ -9,4 +9,4 @@ Nesta implementação, segue-se os seguintes passos:
 5. Continue até chegar no ultimo elemento da lista
 
 Visualização de como funciona o algoritmo:
-![image](https://github.com/thiagomvas/programacao-imperativa/assets/47324415/b7f58090-5ee3-4031-a449-4e1e3d6e8364)
+![image](https://github.com/thiagomvas/programacao-imperativa/assets/47324415/74f631ef-7136-4c1f-9d85-75c58e018397)
