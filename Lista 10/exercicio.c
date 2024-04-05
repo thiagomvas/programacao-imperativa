@@ -79,8 +79,11 @@ void SolicitaServico(){
     scanf(" %[^\n]s",VZonda[Quant].Placa);
     
     if(PlacaEmUso(VZonda[Quant].Placa))
+    {
+	printf("Placa ja está em uso");
         return; // MELHORIA: Se a placa estiver em uso, não criar solicitação nova
-    
+    }
+	  
     printf("Qual o defeito da moto? ");
     scanf(" %[^\n]s",VZonda[Quant].Defeito);
     VZonda[Quant].Status='0';
