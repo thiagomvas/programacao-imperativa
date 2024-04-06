@@ -248,7 +248,7 @@ int main() {
             case 'E': Excluir(); break; 
             case 'C': Consultar(); break; 
             case 'T': ListarTodos(); break; 
-            case 'P': Vender(); break;
+            case 'V': Vender(); break;
         } 
     } while (Opcao != 'S');
     fclose(ArqFarma);
